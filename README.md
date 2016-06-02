@@ -6,7 +6,7 @@ Aktualnie dziala:
 - kasowanie swoich tweetow
 - komentowanie swoich tweetow
 - komentowanie tweetow innych uzytkownikow
-=============================================
+
 TOdo:
 - wyswietlanie daty
 - wiadomosci 

@@ -1,12 +1,16 @@
 # Twitter
-Aktualnie dziala:
-- dodawanie tweetow
-- wyswietlanie swoich tweetow
-- wyswietlanie tweetow wszystkich uzytkownikow 
-- kasowanie swoich tweetow
-- komentowanie swoich tweetow
-- komentowanie tweetow innych uzytkownikow
+Twitter ver 1.0
+- Login and registration
+- Adding new tweets
+- Display tweets for user 
+- Display tweets for all user 
+- Deleting your own tweets
+- Comments for tweets
+- Sending messegess to other users
 
 TOdo:
-- wyswietlanie daty
-- wiadomosci 
+- flag for readed messeges 
+- Bootstrap style
+
+Twitter powered by PHP and Mysql
+

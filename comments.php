@@ -16,7 +16,6 @@ if($_SERVER['REQUEST_METHOD']=== "POST"){
         $newComment->setTweetId($_GET['tweet_id']);
         $newComment->getCreationDate();
         $newComment->createComment($conn);
-//        var_dump($newComment);     
         echo "Comment succesfully added!";
     }  
 }
@@ -29,10 +28,11 @@ if($_SERVER['REQUEST_METHOD']=== "POST"){
     <body>
     <a href="logout.php">Logout</a>
     <a href="index.php">Home</a>
+    <a href="index.php">My profile</a>
 
     <?php
     echo "<br>";
-    echo "<h2>Wszystkie komentarze dla danego tweeta:</h2>";
+    echo "<h2>All comments for this tweet:</h2>";
     
     $allComments = Comments::loadAllComments($conn, $tweet);
 //    var_dump($allComments);

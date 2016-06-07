@@ -113,6 +113,7 @@ class Tweet {
             echo "Tweet text: ".$this->getText()."<br>";
             echo "Author id: ".$this->getUserId()."<br>";
             echo "<a href='comments.php?tweet_id={$this->id}'>Comments</a>"."<br>";
+            echo "<a href='send_message.php?user_id={$this->getUserId()}'>Send messege to this user</a>" . "<br>";
             echo "<br>";
                
     }

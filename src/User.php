@@ -12,6 +12,7 @@ class User {
             return false;
         }
     }
+    
     public function login(mysqli $conn, $email, $password){
         if (empty($email) || empty($password)) {
             return false;
@@ -109,7 +110,7 @@ class User {
     }
     
     public function saveToDB(mysqli $conn){
-        if($this->id == -1){
+        if($this->id === -1){
             $sql = "INSERT INTO User (email, password, fullName, active)
                     VALUES ('{$this->email}', '{$this->password}', '{$this->fullName}', {$this->active})";
             if($conn->query($sql)){
@@ -117,7 +118,7 @@ class User {
                 return true;
             } else {
                 return false;
-            }       
+            }     
         } else {
             $sql = "UPDATE User 
                     SET email = '{$this->email}', 
@@ -131,4 +132,5 @@ class User {
             }
         }
     }
+       
 }

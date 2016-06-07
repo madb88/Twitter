@@ -87,7 +87,7 @@ class Comments{
         $this->id = -1;
         $this->user_id = "";
         $this->comment_id = "";
-        $this->creation_date = "";
+//        $this->creation_date = "";
         $this->text = "";
     }
     

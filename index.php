@@ -26,9 +26,11 @@ if($_SERVER['REQUEST_METHOD']=== "POST"){
     <a href="logout.php">Logout</a>
     <a href="home.php">All Tweets</a>
     <a href="index.php">My tweets</a>
+    <a href="messages.php">Messages</a>
+
     <?php
     echo "<br>";
-    echo "<h2>Wszystkie tweety uzytkownika:</h2>";
+    echo "<h2>All tweets for user:</h2>";
     
     //Wyswietlanie tweetow    
 

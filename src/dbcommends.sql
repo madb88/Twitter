@@ -33,12 +33,14 @@ CREATE TABLE Messages (
     PRIMARY KEY(id)
 ) 
 
-CREATE TABLE User_Messages (
+CREATE TABLE Messages (
     id INT AUTO_INCREMENT NOT NULL,
-    user_id INT NOT NULL,
-    message_id INT NOT NULL,
+    sender_id INT NOT NULL,
+    reciver_id INT NOT NULL,
+    text_message TEXT NOT NULL,
+    is_read TINYINT(1) DEFAULT 1
     PRIMARY KEY(id),
-    FOREIGN KEY(user_id) REFERENCES `User`(id) ON DELETE CASCADE,
-    FOREIGN KEY(message_id) REFERENCES Messages(id) ON DELETE CASCADE
+    FOREIGN KEY(sender_id) REFERENCES `User`(id) ON DELETE CASCADE,
+    FOREIGN KEY(reciver_id) REFERENCES `User`(id) ON DELETE CASCADE
 )
 

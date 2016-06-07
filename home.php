@@ -13,11 +13,12 @@ session_start();
     
     <a href="logout.php">Logout</a>
     <a href="home.php">All Tweets</a>
-    <a href="index.php">My tweets</a>
+    <a href="index.php">My profile</a>
+
 
     <?php
     echo "<br>";
-    echo "<h2>Wszystkie tweety:</h2>";
+    echo "<h2>All tweets:</h2>";
     
     //Wyswietlanie wszystkich tweetow    
 

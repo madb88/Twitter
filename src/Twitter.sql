@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 07 Cze 2016, 06:44
+-- Czas wygenerowania: 07 Cze 2016, 19:38
 -- Wersja serwera: 5.5.49-0ubuntu0.14.04.1
 -- Wersja PHP: 5.5.9-1ubuntu4.16
 
@@ -74,7 +74,15 @@ CREATE TABLE IF NOT EXISTS `Messages` (
   PRIMARY KEY (`id`),
   KEY `sender_id` (`sender_id`),
   KEY `reciver_id` (`reciver_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+
+--
+-- Zrzut danych tabeli `Messages`
+--
+
+INSERT INTO `Messages` (`id`, `sender_id`, `reciver_id`, `text_message`, `is_read`) VALUES
+(1, 14, 5, 'dasdadadasd', 0),
+(2, 14, 5, 'dasdasadasdadasd', 0);
 
 -- --------------------------------------------------------
 

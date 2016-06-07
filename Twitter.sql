@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 02 Cze 2016, 10:57
+-- Czas wygenerowania: 07 Cze 2016, 06:44
 -- Wersja serwera: 5.5.49-0ubuntu0.14.04.1
 -- Wersja PHP: 5.5.9-1ubuntu4.16
 
@@ -67,9 +67,13 @@ INSERT INTO `Comments` (`id`, `text`, `creation_date`, `user_id`, `tweet_id`) VA
 
 CREATE TABLE IF NOT EXISTS `Messages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `message` text NOT NULL,
-  `readed` tinyint(1) DEFAULT '1',
-  PRIMARY KEY (`id`)
+  `sender_id` int(11) NOT NULL,
+  `reciver_id` int(11) NOT NULL,
+  `text_message` text NOT NULL,
+  `is_read` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `sender_id` (`sender_id`),
+  KEY `reciver_id` (`reciver_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -84,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `Tweet` (
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=58 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=59 ;
 
 --
 -- Zrzut danych tabeli `Tweet`
@@ -98,7 +102,6 @@ INSERT INTO `Tweet` (`id`, `text`, `user_id`) VALUES
 (37, 'hgfhfgh', 9),
 (38, 'dsadsadas', 9),
 (39, 'ghfhfghf', 9),
-(43, 'sdsadsadasdsad', 5),
 (45, 'dsadsada', 10),
 (46, 'gdfgdfg', 8),
 (47, 'gdfgdfg', 8),
@@ -111,7 +114,8 @@ INSERT INTO `Tweet` (`id`, `text`, `user_id`) VALUES
 (54, 'testowy tweet', 11),
 (55, 'Dodaje nowego tweeta dla uzytkownika 11', 11),
 (56, 'Dodaje 50 tweetaaaa', 11),
-(57, 'fsdfsdfds', 5);
+(57, 'fsdfsdfds', 5),
+(58, 'Testowy tweet', 13);
 
 -- --------------------------------------------------------
 
@@ -127,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `User` (
   `active` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=47 ;
 
 --
 -- Zrzut danych tabeli `User`
@@ -146,22 +150,9 @@ INSERT INTO `User` (`id`, `email`, `password`, `fullName`, `active`) VALUES
 (10, 'test5@wp.pl', '$2y$10$bF5RxOAj9q1H0yyA.5uame3gdXU7RCfmDYDdO791AxrcV859dzp7u', 'adsadsadsad', 1),
 (11, 'nowy6@gmail.com', '$2y$10$8qP1KzOVSlvv9lFIpnhTU.i.RG5DFxhOV7sIh1705SshjXvGf5Jt6', 'Testowy6', 1),
 (12, 'bootstrap@gmail.com', '$2y$10$Qy8cFTnkjnk4VqmfFCcdiOxMQHz.vOS2NpaN.7Uq9ugwBgbD.Axsu', 'Boot', 1),
-(13, 'boot2@gmail.com', '$2y$10$s2SW3gOMDmJkFjAgRlnxkOJ37Dt4DXw.BZTOZhbRpeXIHv7TsJbrK', 'Kuba', 1);
-
--- --------------------------------------------------------
-
---
--- Struktura tabeli dla tabeli `User_Messages`
---
-
-CREATE TABLE IF NOT EXISTS `User_Messages` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `message_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`),
-  KEY `message_id` (`message_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+(13, 'boot2@gmail.com', '$2y$10$s2SW3gOMDmJkFjAgRlnxkOJ37Dt4DXw.BZTOZhbRpeXIHv7TsJbrK', 'Kuba', 1),
+(14, 'boot3@gmail.com', '$2y$10$dDjKYwNAR8/5h.raGe/W/Og9PYdF.r5ZpPnfcI7nC3dBcDSdaC2cG', 'Kuba2', 1),
+(46, 'boo9@gmai.com', '$2y$10$1nWRJPUd3IYA58PpVFonxOvq6wJS.vv6.AKJRb5lFza2u8sF463A.', 'adsadasdsadsa', 1);
 
 --
 -- Ograniczenia dla zrzutów tabel
@@ -174,17 +165,17 @@ ALTER TABLE `Comments`
   ADD CONSTRAINT `Comments_ibfk_1` FOREIGN KEY (`tweet_id`) REFERENCES `Tweet` (`id`) ON DELETE CASCADE;
 
 --
+-- Ograniczenia dla tabeli `Messages`
+--
+ALTER TABLE `Messages`
+  ADD CONSTRAINT `Messages_ibfk_1` FOREIGN KEY (`sender_id`) REFERENCES `User` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `Messages_ibfk_2` FOREIGN KEY (`reciver_id`) REFERENCES `User` (`id`) ON DELETE CASCADE;
+
+--
 -- Ograniczenia dla tabeli `Tweet`
 --
 ALTER TABLE `Tweet`
   ADD CONSTRAINT `Tweet_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`) ON DELETE CASCADE;
-
---
--- Ograniczenia dla tabeli `User_Messages`
---
-ALTER TABLE `User_Messages`
-  ADD CONSTRAINT `User_Messages_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `User_Messages_ibfk_2` FOREIGN KEY (`message_id`) REFERENCES `Messages` (`id`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
